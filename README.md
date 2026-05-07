@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # StitchPro — Sewing Shop Management System
 ## Django + Django Unfold + PostgreSQL/SQLite
 
@@ -161,3 +162,7 @@ sewingshop/
 - Search and filtering on all models
 - Date hierarchy on time-based models
 - Custom purple brand theme
+=======
+# costuras-de-paqui
+Databases project
+>>>>>>> ca5e2bded9ad1c49e776a6529d664e234e61c791
