@@ -1,0 +1,64 @@
+{% extends 'portal/base.html' %}
+{% block title %}Sign In{% endblock %}
+
+{% block extra_css %}
+<style>
+  main { display: flex; align-items: center; justify-content: center; min-height: calc(100vh - 130px); padding: 2rem; }
+  .auth-box { width: 100%; max-width: 440px; }
+  .auth-header { text-align: center; margin-bottom: 2rem; }
+  .auth-header h1 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 0.5rem; }
+  .auth-header p { color: var(--muted); font-size: 0.9rem; }
+  .error-box {
+    background: #fdf2f2;
+    border: 1px solid #f5c6cb;
+    border-left: 4px solid var(--danger);
+    color: var(--danger);
+    padding: 0.85rem 1.25rem;
+    border-radius: 0 2px 2px 0;
+    margin-bottom: 1.5rem;
+    font-size: 0.875rem;
+  }
+  .auth-footer { text-align: center; margin-top: 1.5rem; color: var(--muted); font-size: 0.875rem; }
+  .auth-footer a { color: var(--gold); text-decoration: none; font-weight: 500; }
+  .btn-full { width: 100%; justify-content: center; padding: 0.85rem; font-size: 0.95rem; }
+  .divider-text { text-align: center; color: var(--muted); font-size: 0.8rem; margin: 1.25rem 0; position: relative; }
+  .divider-text::before { content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: var(--border); z-index: 0; }
+  .divider-text span { background: #fff; padding: 0 0.75rem; position: relative; z-index: 1; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="auth-box">
+  <div class="card">
+    <div class="auth-header">
+      <h1>Welcome back</h1>
+      <p>Sign in to track your orders and book new garments</p>
+    </div>
+
+    {% if error %}
+    <div class="error-box">{{ error }}</div>
+    {% endif %}
+
+    <form method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="email" id="email" name="email" value="{{ email|default:'' }}" placeholder="you@email.com" required autofocus>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Your password" required>
+      </div>
+      <button type="submit" class="btn btn-primary btn-full">Sign In →</button>
+    </form>
+
+    <div class="divider-text"><span>New here?</span></div>
+
+    <a href="{% url 'portal_register' %}" class="btn btn-outline btn-full">Create an account</a>
+  </div>
+
+  <div class="auth-footer">
+    Staff member? <a href="{% url 'login' %}">Staff login</a>
+  </div>
+</div>
+{% endblock %}
